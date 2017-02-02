@@ -27,6 +27,10 @@ export class ActorDetailComponent implements OnInit {
   showMoviesWritten: boolean = false;
   showMoviesProduced: boolean = false;
   selectedRole: string = "showAll";
+  mostRecentMoviesOn: boolean = true;
+  mostRecentDirectedOn: boolean = true;
+  mostRecentProducedOn: boolean = true;
+  mostRecentWrittenOn: boolean = true;
 
 
 
@@ -57,19 +61,20 @@ export class ActorDetailComponent implements OnInit {
           if (film.poster_path !== null ){
             this.moviesActedIn.push(film)
             this.showMoviesActed = true
-
           }
         })
         this.newCredits.crew.forEach(film => {
           if(film.job === 'Director' && film.poster_path){
             this.moviesDirected.push(film)
+            // this.moviesDirected = this.moviesDirected.sort(this.compare);
             this.showMoviesDirected = true
           } else if (film.job === 'Screenplay' && film.poster_path){
             this.moviesWritten.push(film)
+            // this.moviesWritten = this.moviesWritten.sort(this.compare);
             this.showMoviesWritten = true
-
           } else if (film.department === 'Production' && film.poster_path){
             this.moviesProduced.push(film)
+            // this.moviesProduced = this.moviesProduced.sort(this.compare);
             this.showMoviesProduced = true
 
           }
@@ -78,6 +83,38 @@ export class ActorDetailComponent implements OnInit {
       })
     })
   }
+
+  compare (a,b) {
+    if (a.release_date && b.release_date) {
+      if (a.release_date.split('-').join('') > b.release_date.split('-').join(''))
+        return -1;
+      if (a.release_date.split('-').join('') < b.release_date.split('-').join(''))
+        return 1;
+      return 0;
+    }
+
+  }
+
+  mostRecentMovies() {
+    this.moviesActedIn = this.moviesActedIn.sort(this.compare);
+    this.mostRecentMoviesOn = false;
+  }
+
+  mostRecentDirector() {
+    this.moviesDirected = this.moviesDirected.sort(this.compare);
+    this.mostRecentDirectedOn = false;
+  }
+
+  mostRecentProducer() {
+    this.moviesProduced = this.moviesProduced.sort(this.compare);
+    this.mostRecentProducedOn = false;
+  }
+
+  mostRecentWriter() {
+    this.moviesWritten = this.moviesWritten.sort(this.compare);
+    this.mostRecentWrittenOn = false;
+  }
+
 
   navigateToMovie(tmdbID: string, media_type): void{
     if(media_type === "movie") {

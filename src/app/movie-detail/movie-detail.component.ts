@@ -149,12 +149,6 @@ export class MovieDetailComponent implements OnInit, DoCheck {
     this.us.addToFavoriteMovies(this.movie, this.user);
   }
 
-  // removeFromFavorites(): void{
-  //   this.userFavorite = false;
-  //   console.log('method called');
-  //   this.us.removeFromFavoriteMovies(this.movie, this.fbUser);
-  // }
-
   removeFromFavorites(){
     this.userFavorite = false;
     this.us.removeFromFavoriteMovies(this.movie, this.fbUser).subscribe(tempUser => {

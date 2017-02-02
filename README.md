@@ -6,7 +6,7 @@
 
 ## Setup/Installation Requirements
 
-_View at: [https://blank-and-chill.firebaseapp.com/](https://blank-and-chill.firebaseapp.com/)_
+_View at: [https://streamsearch-21151.firebaseapp.com/](https://streamsearch-21151.firebaseapp.com/)_
 
 _For developers, from the command line run:_
 ```

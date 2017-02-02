@@ -18,6 +18,7 @@
   </div>
   <div *ngIf="showMoviesActed">
     <h2>As Actor:</h2>
+    <a (click)="mostRecentMovies()" *ngIf="mostRecentMoviesOn">Sort by Most Recent</a>
     <div class="movieContainer">
       <div *ngFor="let credit of moviesActedIn" (click)="navigateToMovie(credit?.id, credit?.media_type)" class="movie">
         <div class="hiddenText">
@@ -30,6 +31,7 @@
 
   <div *ngIf="showMoviesDirected">
     <h2>As Director:</h2>
+    <a (click)="mostRecentDirector()" *ngIf="mostRecentDirectedOn">Sort by Most Recent</a>
     <div class="movieContainer">
       <div *ngFor="let credit of moviesDirected" class="movie" (click)="navigateToMovie(credit?.id, credit?.media_type)">
         <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}">
@@ -39,6 +41,7 @@
 
   <div *ngIf="showMoviesWritten">
     <h2>As Writer:</h2>
+    <a (click)="mostRecentWriter()" *ngIf="mostRecentWrittenOn">Sort by Most Recent</a>
     <div class="movieContainer">
       <div *ngFor="let credit of moviesWritten" class="movie" (click)="navigateToMovie(credit?.id, credit?.media_type)">
         <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />
@@ -47,6 +50,7 @@
   </div>
   <div *ngIf="showMoviesProduced">
     <h2>As Producer:</h2>
+    <a (click)="mostRecentProducer()" *ngIf="mostRecentProducedOn">Sort by Most Recent</a>
     <div class="movieContainer">
       <div class="movie" *ngFor="let credit of moviesProduced" (click)="navigateToMovie(credit?.id, credit?.media_type)">
         <img src="https://image.tmdb.org/t/p/w185/{{credit?.poster_path}}" alt="{{credit?.title}}" />

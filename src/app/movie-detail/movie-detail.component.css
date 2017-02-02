@@ -5,6 +5,9 @@
 .titleSection {
   position: relative;
 }
+.topBilled:hover, a {
+  cursor: pointer;
+}
 .banner {
   width: 100%;
   height: 40vw;
