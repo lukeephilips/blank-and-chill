@@ -35,9 +35,12 @@
         <div class="streaming" *ngIf="onHbo">
           <a href={{onHbo}} target="_blank"><img src='assets/img/hbo-go-icon.png' alt="Hbo"></a>
         </div>
+        <div class="streaming" *ngIf='!onNetflix && !onHulu && !onAmazon && !onHbo'>
+          <p><strong>There are no streaming sources for {{movie?.title}}</strong></p>
+        </div>
       </div>
-
-      <div *ngIf="cheapestPurchaseOption.price" class="purchase">
+      <hr>
+      <div *ngIf="cheapestPurchaseOption.price " class="purchase">
         Cheapest Purchase Price: <a target="_blank" href={{cheapestPurchaseOption.link}}> ${{cheapestPurchaseOption.price}}</a>
       </div>
 
