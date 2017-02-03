@@ -6,7 +6,7 @@
 
 ## Setup/Installation Requirements
 
-_View at: [https://https://blank-and-chill.firebaseapp.com/](https://https://blank-and-chill.firebaseapp.com/)_
+_View at: [blank-and-chill.firebaseapp.com/](blank-and-chill.firebaseapp.com/)_
 
 _For developers, from the command line run:_
 ```
