@@ -49,37 +49,40 @@ export class SearchResultsComponent implements OnInit {
           this.itemsToDisplay.length = 0;
           this.parsedMovies.length = 0;
           this.apiResults = x;
-          this.apiResults.results.forEach(movie => {
-            this.ms.getMovieDetails(movie.id).subscribe(y => {
-              this.parsedMovies.push(JSON.parse(y['_body']));
-              if (this.filter[0] === "" ) {
-                this.unique = this.parsedMovies.filter(function(elem, index, self) {
-                  return index == self.indexOf(elem);
-                })
-                console.log(this.unique)
-                this.itemsToDisplay = this.unique;
 
-              } else {
-                // should never be hit after wiring off buttons
-                this.parsedMovies.forEach(movie => {
-                  movie.subscription_web_sources.forEach(source => {
+          this.itemsToDisplay = this.apiResults.results;
+          
+          // Wire API call for each movie to find streaming sources
 
-// changed function to test each value in filter array
-                    if (this.filter.some(x => x === source.display_name)) {
-                      this.foundMovies.push(movie);
-                    }
-                  })
-                })
-                this.unique = this.foundMovies.filter(function(elem, index, self) {
-                  return index == self.indexOf(elem);
-                })
-                this.itemsToDisplay = this.unique;
-                console.log(this.itemsToDisplay);
-                this.foundMovies.length = 0;
-                this.unique = null;
-              }
-            });
-          })
+          // this.apiResults.results.forEach(movie => {
+          //   this.ms.getMovieDetails(movie.id).subscribe(y => {
+          //     this.parsedMovies.push(JSON.parse(y['_body']));
+          //     // if (this.filter[0] === "" ) {
+          //       this.unique = this.parsedMovies.filter(function(elem, index, self) {
+          //         return index == self.indexOf(elem);
+          //       })
+          //       this.itemsToDisplay = this.unique;
+// Wired off guidebox sear
+              // } else if 2 === 3 {
+//                 this.parsedMovies.forEach(movie => {
+//                   movie.subscription_web_sources.forEach(source => {
+//
+// // changed function to test each value in filter array
+//                     if (this.filter.some(x => x === source.display_name)) {
+//                       this.foundMovies.push(movie);
+//                     }
+//                   })
+//                 })
+//                 this.unique = this.foundMovies.filter(function(elem, index, self) {
+//                   return index == self.indexOf(elem);
+//                 })
+//                 this.itemsToDisplay = this.unique;
+//                 console.log(this.itemsToDisplay);
+//                 this.foundMovies.length = 0;
+//                 this.unique = null;
+              // }
+          //   });
+          // })
         })
       }
     });
