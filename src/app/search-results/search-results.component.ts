@@ -51,8 +51,8 @@ export class SearchResultsComponent implements OnInit {
           this.apiResults = x;
 
           this.itemsToDisplay = this.apiResults.results;
-          
-          // Wire API call for each movie to find streaming sources
+
+// Wire API call for each movie to find streaming sources
 
           // this.apiResults.results.forEach(movie => {
           //   this.ms.getMovieDetails(movie.id).subscribe(y => {
@@ -62,7 +62,6 @@ export class SearchResultsComponent implements OnInit {
           //         return index == self.indexOf(elem);
           //       })
           //       this.itemsToDisplay = this.unique;
-// Wired off guidebox sear
               // } else if 2 === 3 {
 //                 this.parsedMovies.forEach(movie => {
 //                   movie.subscription_web_sources.forEach(source => {

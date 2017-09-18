@@ -49,8 +49,10 @@ export class ActorDetailComponent implements OnInit {
     this.actorService.getActorDetails(personGbID, this.role).subscribe(response => {
       this.newActor = response;
       this.newActor = JSON.parse(this.newActor._body);
-      this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.description, this.newActor.imdb, this.newActor.images);
-      actorTmdbID = this.newActor.themoviedb;
+      var headshot = "https://image.tmdb.org/t/p/w185/".concat(this.newActor.profile_path);
+      this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.biography, this.newActor.imdb_id, headshot);
+      actorTmdbID = this.newActor.id;
+      console.log(this.actor);
 
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
         var posterPrefix = "https://image.tmdb.org/t/p/w185/";
