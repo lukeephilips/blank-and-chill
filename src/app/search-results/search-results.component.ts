@@ -35,7 +35,8 @@ export class SearchResultsComponent implements OnInit {
 
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {
-         this.apiResults = results;
+         this.apiResults = JSON.parse(results._body);
+         console.log(this.apiResults);
          this.itemsToDisplay = this.apiResults.results;
         })
       } else if (this.category === 'show') {
@@ -76,7 +77,6 @@ export class SearchResultsComponent implements OnInit {
 //                   return index == self.indexOf(elem);
 //                 })
 //                 this.itemsToDisplay = this.unique;
-//                 console.log(this.itemsToDisplay);
 //                 this.foundMovies.length = 0;
 //                 this.unique = null;
               // }

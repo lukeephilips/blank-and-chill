@@ -16,14 +16,14 @@
       </div>
     </div>
 
-    <div *ngIf="category === 'person'" [ngSwitch]="item.images?.small?.url">
+    <div *ngIf="category === 'person'" [ngSwitch]="item?.profile_path">
       <div class="personMedia" *ngSwitchCase=''>
         <p class="personName">{{item.name}}</p>
         <img src="/assets/img/person-placeholder.png">
       </div>
       <div class="personMedia" *ngSwitchDefault>
         <p class="personName">{{item.name}}</p>
-        <img (click)="goToPersonPage(item.id)" id={{item.id}} src="{{item.images?.small?.url}}" alt="{{item.name}}">
+        <img (click)="goToPersonPage(item.id)" id={{item.id}} src="http://image.tmdb.org/t/p/w185//{{item?.profile_path}}" alt="{{item.name}}">
       </div>
     </div>
 

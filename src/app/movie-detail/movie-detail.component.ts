@@ -62,7 +62,6 @@ export class MovieDetailComponent implements OnInit, DoCheck {
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      // console.log(res);
 
       var year = new Date(res.release_date).getFullYear().toString();
       var poster = "http://image.tmdb.org/t/p/w185//".concat(res.poster_path);
@@ -117,7 +116,6 @@ export class MovieDetailComponent implements OnInit, DoCheck {
       this.movieService.getMovieCast(movieID).subscribe(res => {
           this.movieApiDetails['cast'] = response;
           this.movieApiDetails['cast'] = JSON.parse(res._body);
-          console.log(this.movieApiDetails['cast']);
 
           this.movie.cast = this.movieApiDetails['cast'].cast;
           this.topBilled = this.movie.cast.splice(0,5);
@@ -137,7 +135,6 @@ export class MovieDetailComponent implements OnInit, DoCheck {
               let tempActorThing = [];
               headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
               tempActorThing.push(actorDetails.name, headshot, actorDetails.id, actorDetails.character)
-              console.log(tempActorThing);
               this.actorsImages.push(tempActorThing);
           })
         })

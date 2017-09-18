@@ -45,7 +45,6 @@ export class MovieService {
   }
   getMovieCast(GbId){
     var res = this.http.get("https://api.themoviedb.org/3/movie/".concat(GbId).concat("/credits").concat("?api_key=").concat(Keys.tmdb));
-    console.log(res);
     return res;
   }
 
