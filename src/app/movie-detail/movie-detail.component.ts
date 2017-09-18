@@ -58,10 +58,17 @@ export class MovieDetailComponent implements OnInit, DoCheck {
     });
 
     this.movieService.getMovieDetails(movieID).subscribe(response => {
+      console.log(response);
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      this.movie = new Movie(res.title, res.id, res.release_year, res.in_theaters, res.release_date, res.rottentomatoes, res.metacritic, res.poster_120x171, res.poster_240x342, res.poster_400x570, res.themoviedb, res.rating);
+      console.log(res);
+
+      var year = new Date(res.release_date).getFullYear().toString();
+      var poster = "http://image.tmdb.org/t/p/w185//".concat(res.poster_path);
+      var backdrop = "http://image.tmdb.org/t/p/w185//".concat(res.backdrop_path);
+
+      this.movie = new Movie(res.title, res.id, year, res.in_theaters, year, res.rottentomatoes, res.metacritic, poster, poster, poster, res.id, res.vote_average);
       this.movie.sources = res.subscription_web_sources;
       this.movie.overview = res.overview;
       this.movie.directors = res.directors;

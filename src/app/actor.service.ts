@@ -10,7 +10,7 @@ export class ActorService {
   constructor(private http: Http) { }
 
   getGBAPIKey(): string{
-    return Keys.guidebox[Math.floor(Math.random() * Keys.guidebox.length)];
+    return ""
   }
 
   getActorDetails(personID: string, role: string){

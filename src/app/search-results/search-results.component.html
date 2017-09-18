@@ -5,15 +5,14 @@
 
     <div class="movieMedia">
       <div *ngIf="category === 'movie'">
-        <img id={{item.id}} (click)="goToPage(item.id)" src="{{item.poster_240x342}}" alt="{{item.title}}">
+        <img id={{item.id}} (click)="goToPage(item.id)" src="http://image.tmdb.org/t/p/w185//{{item.poster_path}}" alt="{{item.title}}">
       </div>
     </div>
 
     <div class="showMedia">
       <div *ngIf="category === 'show'">
         <p class="showTitle">{{item.title}}</p>
-        <img (click)="goToPage(item.id)" src="{{item.artwork_208x117}}" alt="{{item.title}}">
-        <!--do other style-->
+        <img (click)="goToPage(item.id)" src="http://image.tmdb.org/t/p/w185//{{item.poster_path}}" alt="{{item.title}}">
       </div>
     </div>
 

@@ -10,9 +10,9 @@
       <div class="row">
         <div class="col-xs-8">
           <p><strong>Rating:</strong> {{movie?.rating}}</p>
-          <p><strong>Release Year:</strong> {{movie?.release_year}}</p>
-          <p *ngIf="movie?.directors.length > 0"><strong>Directors </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id)">| <a>{{director?.name}}</a> </span></p>
-          <p *ngIf="movie?.writers.length > 0"><strong>Writers </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id)">| <a>{{writer?.name}}</a> </span></p>
+          <p><strong>Release Year:</strong> {{movie?.release_date}}</p>
+          <!-- <p *ngIf="movie?.directors.length > 0"><strong>Directors </strong><span *ngFor="let director of movie?.directors" (click)="getCrewById(director?.id)">| <a>{{director?.name}}</a> </span></p>
+          <p *ngIf="movie?.writers.length > 0"><strong>Writers </strong><span *ngFor="let writer of movie?.writers" (click)="getCrewById(writer?.id)">| <a>{{writer?.name}}</a> </span></p> -->
         </div>
         <div class="col-xs-4">
           <div *ngIf="user" class="userButtons">
@@ -36,12 +36,12 @@
           <a href={{onHbo}} target="_blank"><img src='assets/img/hbo-go-icon.png' alt="Hbo"></a>
         </div>
         <div class="streaming" *ngIf='!onNetflix && !onHulu && !onAmazon && !onHbo'>
-          <p><strong>There are no streaming sources for {{movie?.title}}</strong></p>
+          <p><strong>Streaming sources are unavailable for {{movie?.title}}</strong></p>
         </div>
       </div>
       <hr>
-      <div *ngIf="cheapestPurchaseOption.price " class="purchase">
-        Cheapest Purchase Price: <a target="_blank" href={{cheapestPurchaseOption.link}}> ${{cheapestPurchaseOption.price}}</a>
+      <div>
+        Cheapest Purchase Price: Unavailable<a *ngIf="cheapestPurchaseOption.price " class="purchase" target="_blank" href={{cheapestPurchaseOption.link}}> ${{cheapestPurchaseOption.price}}</a>
       </div>
 
     </div>

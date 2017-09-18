@@ -29,7 +29,7 @@ export class SearchResultsComponent implements OnInit {
       this.category = urlParameters['category'];
       this.term = urlParameters['term'];
 
-// changed filter to conveert passed string back into an array
+// changed filter to convert passed string back into an array
       this.filter = urlParameters['filter'].split(',');
 
 
@@ -39,12 +39,12 @@ export class SearchResultsComponent implements OnInit {
          this.itemsToDisplay = this.apiResults.results;
         })
       } else if (this.category === 'show') {
+        this.category = "tv";
         this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
           this.apiResults = x;
           this.itemsToDisplay = this.apiResults.results;
         });
       } else {
-
         this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
           this.itemsToDisplay.length = 0;
           this.parsedMovies.length = 0;
@@ -56,9 +56,11 @@ export class SearchResultsComponent implements OnInit {
                 this.unique = this.parsedMovies.filter(function(elem, index, self) {
                   return index == self.indexOf(elem);
                 })
+                console.log(this.unique)
                 this.itemsToDisplay = this.unique;
 
               } else {
+                // should never be hit after wiring off buttons
                 this.parsedMovies.forEach(movie => {
                   movie.subscription_web_sources.forEach(source => {
 
@@ -73,7 +75,6 @@ export class SearchResultsComponent implements OnInit {
                 })
                 this.itemsToDisplay = this.unique;
                 console.log(this.itemsToDisplay);
-                // this.itemsToDisplay.length = 0;
                 this.foundMovies.length = 0;
                 this.unique = null;
               }
