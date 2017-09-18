@@ -43,7 +43,10 @@ export class TvDetailComponent implements OnInit {
     this.movieService.getShowDetails(movieID).subscribe(response => {
       this.show = response;
       this.show = JSON.parse(this.show._body);
-      this.foundShow = new Show(this.show.title, this.show.id, this.show.themoviedb, this.show.overview, this.show.poster, this.show.banner, this.show.rating, this.show.network, this.show.cast, this.show.first_aired);
+      console.log(this.show);
+      var poster = "http://image.tmdb.org/t/p/w185//".concat(this.show.poster_path);
+      var banner = "http://image.tmdb.org/t/p/w185//".concat(this.show.backdrop_path);
+      this.foundShow = new Show(this.show.title, this.show.id, this.show.id, this.show.overview, poster, banner, this.show.rating, this.show.networks[0].name, this.show.cast, this.show.first_air_date);
     })
   }
 

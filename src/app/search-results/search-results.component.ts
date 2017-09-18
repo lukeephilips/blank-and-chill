@@ -40,8 +40,8 @@ export class SearchResultsComponent implements OnInit {
          this.itemsToDisplay = this.apiResults.results;
         })
       } else if (this.category === 'show') {
-        this.category = "tv";
-        this.ms.getResultsByTerm(this.category, this.term).subscribe(x => {
+        this.ms.getResultsByTerm('tv', this.term).subscribe(x => {
+          console.log(x);
           this.apiResults = x;
           this.itemsToDisplay = this.apiResults.results;
         });

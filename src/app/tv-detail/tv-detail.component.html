@@ -9,10 +9,10 @@
       <p class="overview">{{foundShow?.overview}}</p>
       <div class="row">
         <div class="col-xs-8">
-          <p><strong>Rating:</strong> {{foundShow?.rating}}</p>
+          <p><strong>Rating:</strong> Unavailable</p>
           <p><strong>Release Year:</strong> {{foundShow?.first_aired.split('-')[0]}}</p>
           <p *ngIf="show?.air_day_of_week"><strong>Airs On:</strong> {{show?.air_day_of_week}}s at {{show?.air_time}}</p>
-          <p *ngIf="!show?.air_day_of_week"><strong>Airs On:</strong> Unknown Day</p>
+          <p *ngIf="!show?.air_day_of_week"><strong>Airs On:</strong> Unavailable</p>
         </div>
         <div class="col-xs-4">
           <div *ngIf="user" class="userButtons">
