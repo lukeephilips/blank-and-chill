@@ -113,7 +113,7 @@ export class MovieDetailComponent implements OnInit, DoCheck {
         })
 
       })
-      this.movieService.getMovieCast(movieID).subscribe(res => {
+      this.movieService.getMovieCast(movieID, "movie").subscribe(res => {
           this.movieApiDetails['cast'] = response;
           this.movieApiDetails['cast'] = JSON.parse(res._body);
 
@@ -126,14 +126,14 @@ export class MovieDetailComponent implements OnInit, DoCheck {
             this.actorService.getActorDetails(actor.id, "cast").subscribe(res => {
               actorDetails = res;
               actorDetails = JSON.parse(actorDetails._body);
-              headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
+              var headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
               if (!headshot){
                 actorDetails.images['medium'] = {
                   'url': '/assets/img/person-placeholder.png'
                 };
               }
               let tempActorThing = [];
-              headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
+              var headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
               tempActorThing.push(actorDetails.name, headshot, actorDetails.id, actorDetails.character)
               this.actorsImages.push(tempActorThing);
           })

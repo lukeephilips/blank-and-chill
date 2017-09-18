@@ -43,8 +43,8 @@ export class MovieService {
   getMovieByTmdbID(tmdbID: string){
     return this.http.get("https://api.themoviedb.org/3/movie/".concat(tmdbID).concat("?api_key=").concat(Keys.tmdb).concat("&language=en-US&query="));
   }
-  getMovieCast(GbId){
-    var res = this.http.get("https://api.themoviedb.org/3/movie/".concat(GbId).concat("/credits").concat("?api_key=").concat(Keys.tmdb));
+  getMovieCast(GbId, category){
+    var res = this.http.get("https://api.themoviedb.org/3/".concat(category).concat("/").concat(GbId).concat("/credits").concat("?api_key=").concat(Keys.tmdb));
     return res;
   }
 

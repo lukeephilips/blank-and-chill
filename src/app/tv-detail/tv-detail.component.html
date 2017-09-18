@@ -53,16 +53,17 @@
   </div>
   <h3 class="starringTitle">Starring Cast</h3>
   <div class="starring">
-    <div class="topBilled">
-      <!-- <p><a>{{actor[0]}}</a></p> -->
-      <!-- <p>{{actor[3]}}</p> -->
-      <!-- <img src={{actor[1]}}> -->
+    <div class="topBilled" *ngFor='let actor of this.topBilled' (click)=navigateToActorById(actor.id)>
+      <p class="actorName"><a>{{actor.name}}</a></p>
+      <p *ngIf="actor.character" class="actorRole">{{actor.character}}</p>
+      <p *ngIf="!actor.character" class="actorRole">N/A</p>
+      <img src="http://image.tmdb.org/t/p/w185//{{actor.profile_path}}">
     </div>
   </div>
   <div class="cast">
     <h5>Cast</h5>
-    <div *ngFor='let castMember of foundShow?.cast' (click)="navigateToActorById(castMember.id)">
-      <p><a>{{castMember.name}}</a> - {{castMember.character_name}}</p>
+    <div *ngFor='let castMember of this.show?.cast' (click)="navigateToActorById(castMember.id)">
+      <p><a>{{castMember.name}}</a> - {{castMember.character}}</p>
     </div>
   </div>
 </div>
