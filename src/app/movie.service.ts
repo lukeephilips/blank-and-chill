@@ -45,7 +45,9 @@ export class MovieService {
     return this.http.get("https://api.themoviedb.org/3/movie/".concat(tmdbID).concat("?api_key=").concat(Keys.tmdb).concat("&language=en-US&query="));
   }
   getMovieCast(GbId){
-    return this.http.get("https://api-public.guidebox.com/v2/movies/".concat(GbId).concat("?api_key=").concat(this.getGBAPIKey()));
+    var res = this.http.get("https://api.themoviedb.org/3/movie/".concat(GbId).concat("/credits").concat("?api_key=").concat(Keys.tmdb));
+    console.log(res);
+    return res;
   }
 
 }

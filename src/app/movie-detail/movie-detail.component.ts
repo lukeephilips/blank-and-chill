@@ -18,6 +18,7 @@ export class MovieDetailComponent implements OnInit, DoCheck {
   topBilled = [];
   actorsImages = [];
   cheapestPurchaseOption = {};
+  headshot = "";
 
   onNetflix: string = null;
   onHulu: string = null;
@@ -58,11 +59,10 @@ export class MovieDetailComponent implements OnInit, DoCheck {
     });
 
     this.movieService.getMovieDetails(movieID).subscribe(response => {
-      console.log(response);
       this.movieApiDetails['details'] = response;
       this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
       var res = this.movieApiDetails['details'];
-      console.log(res);
+      // console.log(res);
 
       var year = new Date(res.release_date).getFullYear().toString();
       var poster = "http://image.tmdb.org/t/p/w185//".concat(res.poster_path);
@@ -116,23 +116,28 @@ export class MovieDetailComponent implements OnInit, DoCheck {
       })
       this.movieService.getMovieCast(movieID).subscribe(res => {
           this.movieApiDetails['cast'] = response;
-          this.movieApiDetails['cast'] = JSON.parse(this.movieApiDetails['cast']._body);
+          this.movieApiDetails['cast'] = JSON.parse(res._body);
+          console.log(this.movieApiDetails['cast']);
+
           this.movie.cast = this.movieApiDetails['cast'].cast;
           this.topBilled = this.movie.cast.splice(0,5);
 
           this.topBilled.forEach(actor => {
-            var characterName = actor.character_name;
+            var characterName = actor.character;
             var actorDetails;
             this.actorService.getActorDetails(actor.id, "cast").subscribe(res => {
               actorDetails = res;
               actorDetails = JSON.parse(actorDetails._body);
-              if (!actorDetails.images.medium){
+              headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
+              if (!headshot){
                 actorDetails.images['medium'] = {
                   'url': '/assets/img/person-placeholder.png'
                 };
               }
               let tempActorThing = [];
-              tempActorThing.push(actorDetails.name,actorDetails.images['medium']['url'], actorDetails.id, characterName)
+              headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
+              tempActorThing.push(actorDetails.name, headshot, actorDetails.id, actorDetails.character)
+              console.log(tempActorThing);
               this.actorsImages.push(tempActorThing);
           })
         })
