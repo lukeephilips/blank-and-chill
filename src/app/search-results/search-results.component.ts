@@ -35,13 +35,11 @@ export class SearchResultsComponent implements OnInit {
 
       if(this.category === "person"){
         this.as.getActorWithImages(this.term).subscribe(results => {
-         this.apiResults = JSON.parse(results._body);
-         console.log(this.apiResults);
+         this.apiResults = JSON.parse(results['_body']);
          this.itemsToDisplay = this.apiResults.results;
         })
       } else if (this.category === 'show') {
         this.ms.getResultsByTerm('tv', this.term).subscribe(x => {
-          console.log(x);
           this.apiResults = x;
           this.itemsToDisplay = this.apiResults.results;
         });

@@ -48,7 +48,7 @@ export class ActorDetailComponent implements OnInit {
     })
     this.actorService.getActorDetails(personGbID, this.role).subscribe(response => {
       this.newActor = response;
-      this.newActor = JSON.parse(this.newActor._body);
+      this.newActor = JSON.parse(this.newActor['_body']);
       var headshot = "https://image.tmdb.org/t/p/w185/".concat(this.newActor.profile_path);
       this.actor = new Actor(this.newActor.id, this.newActor.name, this.newActor.biography, this.newActor.imdb_id, headshot);
       actorTmdbID = this.newActor.id;
@@ -56,7 +56,7 @@ export class ActorDetailComponent implements OnInit {
       this.actorService.getActorCredits(actorTmdbID).subscribe(creditResponse => {
         var posterPrefix = "https://image.tmdb.org/t/p/w185/";
         this.newCredits = creditResponse;
-        this.newCredits = JSON.parse(this.newCredits._body);
+        this.newCredits = JSON.parse(this.newCredits['_body']);
 
         this.newCredits.cast.forEach(film => {
           if (film.poster_path !== null ){
@@ -122,7 +122,7 @@ export class ActorDetailComponent implements OnInit {
       var foundMovie;
       this.movieService.getMovieByTmdbID(tmdbID).subscribe(response => {
         foundMovie = response;
-        foundMovie = JSON.parse(foundMovie._body);
+        foundMovie = JSON.parse(foundMovie['_body']);
         if(Object.keys(foundMovie).length === 0){
           alert('No streaming data available for this film. Try another.')
         } else {

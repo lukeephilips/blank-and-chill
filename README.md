@@ -4,6 +4,8 @@
 
 #### _StreamSearch allows users to find where their favorite movies are streaming, as well as information about TV Shows, Actors, Directors, and Writers. It has a powerful search feature, as well as incorporating user authentication. Once logged in, a user may save movies and shows as 'favorites' to be viewed later._
 
+#### Note: Guidebox no longer provides public API keys. Because of this, much of the core functionality of SearchSearch is now wired off - in particular the ability to search by source. The site is still fully useable as a way to browse movies/ shows and actors.
+
 ## Setup/Installation Requirements
 
 _View at: [blank-and-chill.firebaseapp.com/](blank-and-chill.firebaseapp.com/)_

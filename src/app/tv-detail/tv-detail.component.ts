@@ -47,25 +47,24 @@ export class TvDetailComponent implements OnInit {
 
     this.movieService.getShowDetails(movieID).subscribe(response => {
       this.show = response;
-      this.show = JSON.parse(this.show._body);
+      this.show = JSON.parse(this.show['_body']);
       var poster = "http://image.tmdb.org/t/p/w185//".concat(this.show.poster_path);
       var banner = "http://image.tmdb.org/t/p/w185//".concat(this.show.backdrop_path);
       this.foundShow = new Show(this.show.title, this.show.id, this.show.id, this.show.overview, poster, banner, this.show.rating, this.show.networks[0].name, this.show.cast, this.show.first_air_date);
 
       this.movieService.getMovieCast(movieID, "tv").subscribe(res => {
           this.showApiDetails['cast'] = response;
-          this.showApiDetails['cast'] = JSON.parse(res._body);
+          this.showApiDetails['cast'] = JSON.parse(res['_body']);
 
           this.show.cast = this.showApiDetails['cast'].cast;
           this.topBilled = this.show.cast.splice(0,5);
-          console.log(this.showApiDetails['cast']);
 
           this.topBilled.forEach(actor => {
             var characterName = actor.character;
             var actorDetails;
             this.actorService.getActorDetails(actor.id, "cast").subscribe(res => {
               actorDetails = res;
-              actorDetails = JSON.parse(actorDetails._body);
+              actorDetails = JSON.parse(actorDetails['_body']);
               var headshot = "http://image.tmdb.org/t/p/w185//".concat(actorDetails.profile_path);
               if (!headshot){
                 actorDetails.images['medium'] = {

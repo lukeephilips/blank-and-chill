@@ -60,7 +60,7 @@ export class MovieDetailComponent implements OnInit, DoCheck {
 
     this.movieService.getMovieDetails(movieID).subscribe(response => {
       this.movieApiDetails['details'] = response;
-      this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']._body);
+      this.movieApiDetails['details'] = JSON.parse(this.movieApiDetails['details']['_body']);
       var res = this.movieApiDetails['details'];
 
       var year = new Date(res.release_date).getFullYear().toString();
@@ -91,31 +91,34 @@ export class MovieDetailComponent implements OnInit, DoCheck {
         this.movieApiDetails['images'] = response;
         this.movieApiDetails['images'] = JSON.parse(this.movieApiDetails['images']._body);
         this.movie.backdrop = this.movieService.backdropPrefix + this.movieApiDetails['images'].backdrop_path;
-        this.movieApiDetails['details']['purchase_web_sources'].forEach(purchaseSource => {
-          purchaseSource['formats'].forEach(format => {
-            if (Object.keys(this.cheapestPurchaseOption).length === 0) {
-              this.cheapestPurchaseOption = {
-                'source': purchaseSource['display_name'],
-                'price': parseFloat(format.price),
-                'link': purchaseSource['link']
 
-              }
-
-            }
-            else if (parseFloat(format.price) < this.cheapestPurchaseOption['price']) {
-              this.cheapestPurchaseOption = {
-                'source': purchaseSource['display_name'],
-                'price': parseFloat(format.price),
-                'link': purchaseSource['link']
-              }
-            }
-          })
-        })
+        // wired off due to guidebox
+        
+        // this.movieApiDetails['details']['purchase_web_sources'].forEach(purchaseSource => {
+        //   purchaseSource['formats'].forEach(format => {
+        //     if (Object.keys(this.cheapestPurchaseOption).length === 0) {
+        //       this.cheapestPurchaseOption = {
+        //         'source': purchaseSource['display_name'],
+        //         'price': parseFloat(format.price),
+        //         'link': purchaseSource['link']
+        //
+        //       }
+        //
+        //     }
+        //     else if (parseFloat(format.price) < this.cheapestPurchaseOption['price']) {
+        //       this.cheapestPurchaseOption = {
+        //         'source': purchaseSource['display_name'],
+        //         'price': parseFloat(format.price),
+        //         'link': purchaseSource['link']
+        //       }
+        //     }
+        //   })
+        // })
 
       })
       this.movieService.getMovieCast(movieID, "movie").subscribe(res => {
           this.movieApiDetails['cast'] = response;
-          this.movieApiDetails['cast'] = JSON.parse(res._body);
+          this.movieApiDetails['cast'] = JSON.parse(res['_body']);
 
           this.movie.cast = this.movieApiDetails['cast'].cast;
           this.topBilled = this.movie.cast.splice(0,5);
